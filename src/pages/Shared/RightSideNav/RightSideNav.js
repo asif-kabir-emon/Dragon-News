@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -10,17 +10,36 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import { AuthContext } from "../../../contexts/UserContext";
 import BrandCarousel from "../BrandCarousel/BrandCarousel";
 
 const RightSideNav = () => {
+  const { googleLogIn } = useContext(AuthContext);
+  const handleGoogleSignIn = () => {
+    googleLogIn()
+      .then((result) => {
+        const g_user = result.user;
+        console.log(g_user);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
   return (
     <div>
       <ButtonGroup vertical>
-        <Button className="mb-2" variant="outline-primary">
-          <FaGoogle></FaGoogle> Login with Google
+        <Button
+          className="mb-2 d-flex align-items-center"
+          variant="outline-primary"
+          onClick={handleGoogleSignIn}
+        >
+          <FaGoogle className="me-2"></FaGoogle> Login with Google
         </Button>
-        <Button className="mb-2" variant="outline-dark">
-          <FaGithub></FaGithub> Login with Github
+        <Button
+          className="mb-2 d-flex align-items-center"
+          variant="outline-dark"
+        >
+          <FaGithub className="me-2"></FaGithub> Login with Github
         </Button>
       </ButtonGroup>
       <div>
