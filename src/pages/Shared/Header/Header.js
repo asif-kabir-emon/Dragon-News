@@ -35,15 +35,12 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/Home" className="nav-link p-0">
-                  All News
-                </Link>
-              </Nav.Link>
-              <Nav.Link className="nav-link">Pricing</Nav.Link>
+              <Link to="/Home" className="nav-link p-0">
+                All News
+              </Link>
             </Nav>
             <Nav className="d-lg-flex align-items-lg-center">
-              <Nav.Link>
+              <>
                 {user?.uid ? (
                   <>
                     <span>{user?.displayName}</span>
@@ -54,21 +51,17 @@ const Header = () => {
                 ) : (
                   <>
                     <div className="d-flex">
-                      <Nav.Link>
-                        <Link to="/login" className="nav-link p-0">
-                          Login
-                        </Link>
-                      </Nav.Link>
-                      <Nav.Link>
-                        <Link to="/register" className="nav-link p-0">
-                          Register
-                        </Link>
-                      </Nav.Link>
+                      <Link to="/login" className="nav-link p-0 me-3">
+                        Login
+                      </Link>
+                      <Link to="/register" className="nav-link p-0 me-3">
+                        Register
+                      </Link>
                     </div>
                   </>
                 )}
-              </Nav.Link>
-              <Nav.Link className="p-0">
+              </>
+              <Link to="/profile" className="p-0">
                 {user?.photoURL ? (
                   <Image
                     src={user.photoURL}
@@ -76,9 +69,12 @@ const Header = () => {
                     style={{ height: "30px" }}
                   ></Image>
                 ) : (
-                  <FaUserAlt></FaUserAlt>
+                  <FaUserAlt
+                    className="p-0 m-0"
+                    style={{ fontSize: "18px" }}
+                  ></FaUserAlt>
                 )}
-              </Nav.Link>
+              </Link>
             </Nav>
             <div className="d-lg-none">
               <LeftSideNav></LeftSideNav>

@@ -6,7 +6,6 @@ import { Link, useLoaderData } from "react-router-dom";
 const News = () => {
   const news = useLoaderData();
   const { image_url, title, details, category_id } = news;
-  console.log(category_id);
   return (
     <Card>
       <Card.Img variant="top" src={image_url} />

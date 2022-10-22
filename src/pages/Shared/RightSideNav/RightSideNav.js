@@ -10,16 +10,22 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/UserContext";
 import BrandCarousel from "../BrandCarousel/BrandCarousel";
 
 const RightSideNav = () => {
   const { googleLogIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  // console.log(from);
+
   const handleGoogleSignIn = () => {
     googleLogIn()
       .then((result) => {
         const g_user = result.user;
-        console.log(g_user);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error.message);
